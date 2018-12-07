@@ -1,0 +1,174 @@
+body{
+    margin: 0px;
+}
+td{
+    text-align: center;
+}
+#header {
+    background-color: #ffc24d;
+    margin-bottom: -15px;
+    padding-bottom: 5px;  
+}
+.navbar {
+    overflow: hidden;
+    background-color: #ffc24d;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: white;
+    color: #ffc24d;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#signin {
+    background-color: #ffc24d
+}
+
+.dropdown-content a {
+    float: none;
+    color: #ffc24d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ffc24d;
+    color: #f9f9f9;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#tablecontrols{
+    float: right;
+}
+#tablecontrols button{
+    font-size: 16px;
+    background-color: #ffa600;
+    color: #f9f9f9;
+    border: 2px solid #ffc24d;
+    -webkit-transition: background-color 1s, color 1s, border 1s; /* Safari */
+    transition: background-color 1s, color 1s, border 1s;
+}
+#tablecontrols button:hover{
+    background-color: #ffc24d;
+    color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+}
+#tablecontrols button:hover{
+    background-color: #ffc24d;
+    color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+}
+#tablecontrols button:active{
+    background-color: #ffa600;
+    color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+}
+#display{
+    width: 95%;
+}
+#displayTable{
+    width: 95%;
+}
+#spendingH3{
+    margin-left: 5%;
+}
+#chart{
+    margin: auto;
+    width: 95%;
+    background-color: #2929292c;
+    border-radius: 12px;
+    padding-bottom: 12px;
+}
+#EntryEnter{
+    position: absolute;
+    right: 145%;
+    top: 40%;
+    z-index: 99;
+    margin: auto;
+    width: 20%;
+    background-color: #ffa600;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+}
+#Entry{
+    text-align: center;
+}
+.rInput{
+    border: #ffc24d;
+    width: 50%;
+    -webkit-transition: border 1s, width 1s; /* Safari */
+    transition: border 1s, width 1s;
+
+}
+.pillarbar{
+    margin-bottom: 2px;
+    width: 0px;
+    -webkit-transition: all 2s; /* Safari */
+    transition: all 2s;    
+}
+#pillars{
+    margin-left: 5%;
+    border-left: black solid 2px;
+}
+#ball{
+    float: left;
+    height: 22px;
+    width: 22px;
+    background: #ffc24d;
+    animation: ball 2s infinite; /* Could also use reverse, alternate,*/
+}                                /* alternate-reverse*/
+@keyframes ball {
+    0% {
+        margin-right: 0px;
+        background: #ffc24d;
+        border-radius: 0%;
+    }
+    50% {
+        margin-right: 20px;
+        background: #ffa600;
+        border-radius: 100%;        
+    }
+    100% {
+        margin-right: 0px;
+        background: #ffc24d;
+        border-radius: 0%;      
+    }
+}

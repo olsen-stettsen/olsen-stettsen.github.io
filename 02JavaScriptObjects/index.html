@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript Objects Fluency - Stettsen Olsen</title>
+    <script>
+        function Person(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        };
+        Person.prototype.getName = function () {
+            return this.name;
+        };
+        Person.prototype.getAge = function () {
+            return this.age;
+        };
+        Person.prototype.getGender = function () {
+            return this.gender;
+        };
+
+        function Student(name, age, gender, letterGrade) {
+            Person.call(this, name, age, gender);
+            this.letterGrade = letterGrade;
+        }
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Student.prototype.getLetterGrade = function () {
+            return this.letterGrade;
+        }
+        function Tree() {
+            this.name = "";
+            this.branches = 0;
+            this.leaves = 0;
+        };
+
+        /*************************
+        *DEMO Script
+        *************************/
+        function demo1() {
+            var person = new Person(document.getElementById('item1').value, document.getElementById('item2').value, document.getElementById('item3').value);
+            // make a new person with what's in the boxes
+            // we will call the constructor
+
+            // Next we will call the prototyped functions to get the information back
+            document.getElementById("name1").innerText = person.getName();
+            document.getElementById("age1").innerText = person.getAge();
+            document.getElementById("gender1").innerText = person.getGender();
+        }
+        function demo2() {
+            var student = new Student(document.getElementById('item4').value, document.getElementById('item5').value,
+                document.getElementById('item6').value, document.getElementById('item7').value);
+
+            document.getElementById("name2").innerText = student.getName();
+            document.getElementById("age2").innerText = student.getAge();
+            document.getElementById("gender2").innerText = student.getGender();
+            document.getElementById("grade2").innerText = student.getLetterGrade();
+        }
+        function demo3() {
+            var tree1 = new Tree();
+            var tree2 = new Tree();
+
+            tree1.name = document.getElementById('item8').value;
+            tree1.branches = document.getElementById('item9').value;
+            tree1.leaves = document.getElementById('item10').value;
+
+            tree2.name = document.getElementById('item11').value;
+            tree2.branches = document.getElementById('item12').value;
+            tree2.leaves = document.getElementById('item13').value;
+
+            document.getElementById("trees").innerText = "Tree 1 is a " + tree1.name + " and has " + tree1.branches + " with " + tree1.leaves
+                + "leaves. Tree 2 iis a " + tree2.name + " and has " + tree2.branches + " with " + tree2.leaves + "leaves."
+        }
+        // Declaration with methods
+        var bob = {
+            name: "bob",
+            letterGrade: "Junior",
+            age: "29",
+            hairColor: "blonde",
+            getName: function () {
+                alert(this.name);
+            }
+        }
+
+    </script>
+</head>
+
+<body style="background-color: skyblue;">
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+    <div id="header">
+        <h1>Javascript Objects Fluency</h1>
+        <h2>Stettsen Olsen</h2>
+        <h3>CIT 261</h3>
+    </div>
+    <div id="demo1" class="demo" style="border-style: solid; border-width: 5px; border-radius: 12px;">
+        <h3>We will create a person object and then refernce it's properties </h3>
+        <img src="capture1.JPG" alt="Screen Shot 1"><br>
+        NAME:<input id="item1">
+        AGE: <input id="item2">
+        GENDER: <input id="item3">
+        <button onclick="demo1()" type="button">Go!</button>
+        <h3 id="name1">Name</h3>
+        <h3 id="age1">Age</h3>
+        <h3 id="gender1">Gender</h3>
+    </div>
+    <div id="demo2" class="demo" style="border-style: solid; border-width: 5px; border-radius: 12px;">
+        <h3>We will create a Student object that will inherit from Person </h3>
+        <img src="capture2.JPG" alt="Screen Shot 1" style="float:left;">
+        <img src="capture4.JPG" alt="Screen Shot 1"><br><br>
+        NAME:<input id="item4">
+        AGE: <input id="item5">
+        GENDER: <input id="item6">
+        LETTER GRADE: <input id="item7">
+        <button onclick="demo2()" type="button">Go!</button>
+        <h3 id="name2">Name</h3>
+        <h3 id="age2">Age</h3>
+        <h3 id="gender2">Gender</h3>
+        <h3 id="grade2">Letter Grade</h3>
+    </div>
+    <div id="demo3" class="demo" style="border-style: solid; border-width: 5px; border-radius: 12px;">
+        <h3>Multiples instances </h3>
+        <img src="capture5.JPG" alt="Screen Shot 1"><br><br>
+        TREE #1 KIND:<input id="item8"><br>
+        NUMBER OF BRANCHES: <input id="item9"><br>
+        NUMBER OF LEAVES: <input id="item10"><br><br>
+        TREE #2 KIND:<input id="item11"><br>
+        NUMBER OF BRANCHES: <input id="item12"><br>
+        NUMBER OF LEAVES: <input id="item13"><br>
+        <button onclick="demo3()" type="button">Go!</button>
+        <h3 id="trees"></h3>
+    </div>
+    <div id="demo4" class="demo" style="border-style: solid; border-width: 5px; border-radius: 12px;">
+        <h3>Now, we will test a JSON Declaration and call it's method </h3>
+        <img src="capture3.JPG" alt="Screen Shot 3">
+        <button onclick="bob.getName()" type="button">Go!</button>
+    </div>
+</body>
+
+</html>

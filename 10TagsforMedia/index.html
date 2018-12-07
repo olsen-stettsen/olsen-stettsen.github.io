@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tags For Media Fluency - Stettsen Olsen</title>
+    <style>
+        .videocontainer {
+            position: relative;
+            margin: auto;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .iframevid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #contentcontainer{
+            width: 50%;
+        }
+        #canvas{
+            border: black solid 3px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+    <div id="contentcontainer">
+        <div id="header">
+            <h1>Tags For Media Fluency</h1>
+            <h2>Stettsen Olsen</h2>
+            <h3>CIT 261</h3>
+        </div>
+        This is what I listened to while making this page.
+        <div class="videocontainer">
+            <iframe class="iframevid" src="https://www.youtube.com/embed/dDwXHTcodNg" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen></iframe>
+        </div>
+        <div>
+            This is a song for you Brother James! ...Nevermind the context of the movie :)<br>
+            <audio controls>
+                <source src="13. Thank You Very Much.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        <div class="videocontainer">
+            <video class="iframevid" controls>
+                <source src="../09JavaScriptEvents/JavaScript Events Part 1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="videocontainer">
+            <canvas id="canvas" class="iframevid"></canvas>
+        </div>
+        <script>
+            var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                var my_gradient = ctx.createLinearGradient(0, 0, 170, 0);
+                my_gradient.addColorStop(0, "red");
+                my_gradient.addColorStop(0.5, "white");
+                my_gradient.addColorStop(1, "blue");
+                ctx.fillStyle = my_gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.font = "26px arial";
+                ctx.fillStyle = "black";
+                ctx.textAlign = "center";
+                ctx.fillText("I am a canvas", canvas.width / 2, canvas.height / 2);          
+        </script>
+    </div>
+</body>
+
+</html>

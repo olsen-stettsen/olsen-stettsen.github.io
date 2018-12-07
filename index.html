@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>Stettsen Olsen CIT 261 - Fluency</title>
+    <link rel="stylesheet" type="text/css" href="stettsenolsenhome.css">
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                document.getElementById("backToTop").style.display = "block";
+            } else {
+                document.getElementById("backToTop").style.display = "none";
+            }
+        }/*
+        function popUpVis() {
+            if (document.getElementById("popUp").style.visibility == "visible") {
+                document.getElementById("popUp").style.visibility = "hidden";
+            } else {
+                document.getElementById("popUp").style.visibility = "visible";
+            }
+        }
+        function bybyPopup() {
+            document.getElementById("popUp").style.visibility = "hidden";
+        }*/
+        function adjustSize() {
+            var y = (window.innerHeight * .9);
+            var x = y + "px";
+            document.getElementById("popUp").style.maxHeight = x;
+            document.getElementById("popUp").style.maxWidth = y * .8 + "px";
+            /*document.getElementById("popUp").style.width = (window.innerWidth * .4) + "px";
+            document.getElementById("popUp").style.fontSize = .8 + "vw";
+            if (widow.innerWidth < 900) {
+                document.getElementsByClassName("tabs").style.fontSize = .6 + "vw";
+            } else {
+                document.getElementsByClassName("tabs").style.fontSize = 1 + "vw";
+            }*/
+            /*document.getElementById("popUp").style.width = (window.innerWidth * .8) + "px";*/
+        }
+    </script>
+</head>
+
+<body onload="adjustSize()">
+    <div id="headingback">
+        <div id="heading">
+            <div id="logo">
+                <img class="headingPic" src="Header5.png"><br>
+                <H1>CIT 261</H1>
+            </div>
+
+            <div class="navigation">
+                <button class="tabs mobilebtn" onclick="window.location.href='./index.html'">Code Fluency</button>
+                <!--<button class="tabs mobilebtn" onclick="popUpVis()">Pop Up</button>-->
+                <button class="tabs mobilebtn" onclick="window.location.href='./journal.html'">Journal</button>
+                <button class="tabs mobilebtn" onclick="window.open('https://github.com/olsen-stettsen/olsen-stettsen.github.io')">View Code
+                    on GitHub</button>
+            </div>
+        </div>
+        <div id="qoute" style="float:right; color:white; font-size: 26pt; padding-right: 20px; padding-top: 20px;">
+            <p><i>"I wont be impressed with<br> technology until I can<br> download snacks"<br> -Jillian Michaels</i>
+            </p>
+        </div>
+    </div>
+
+        <div id="popUp">
+           
+            <div id="popUpflat">
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="tabs" onclick="window.location.href='#javascript'">JavaScript</button>
+            <button class="tabs" onclick="window.location.href='#javascriptobjects'">JavaScript Objects</button>
+            <button class="tabs" onclick="window.location.href='#json'">JSON</button>
+            <button class="tabs" onclick="window.location.href='#ajax'">AJAX</button>
+            <button class="tabs" onclick="window.location.href='#ajax'">Local Storage</button>
+            <button class="tabs" onclick="window.location.href='#domDocumentObjectModel'">DOM Document Object Model</button>
+            <button class="tabs" onclick="window.location.href='#css3UsingJavaScript'">CSS3 using JavaScript</button>
+            <button class="tabs" onclick="window.location.href='#css3TAT'">CSS3 Transitions, Animations, Transformations</button>
+            <button class="tabs" onclick="window.location.href='#css3TAT'">JavaScript Events</button>
+            <button class="tabs" onclick="window.location.href='#html5TagsForMedia'">HTML5 Tags for Media</button>
+            <button class="tabs" onclick="window.location.href='#css3Transitions'">CSS3 Transitions</button>
+            <button class="tabs" onclick="window.location.href='#css3Transforms'">CSS3 Transforms</button>
+            <button class="tabs" onclick="window.location.href='#css3TAT'">CSS Animations</button>
+        </div>
+
+    <div id="content">
+
+        <div class="week" id="javascript">
+            <img class="weekheading" src="01JavaScript/javaScriptHeader.png" alt="JavaScript">
+            <div class="lrcontainer">
+                <div class="leftweek">
+                    <p style="color:white;">A website that demonstrates JavaScript Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays.
+                    The website can be viewed <a href="01JavaScript/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/blob/master/01JavaScript/index.html">here</a>.</p>
+                </div>
+                <div class="rightweek">
+                        <img class="piclink" src="01JavaScript/Screenshot from 2018-10-02 19-25-09.png" alt="Week 01">                   
+                </div>
+            </div>
+        </div>
+        <div class="week" id="javascriptobjects">
+                <img class="weekheading" src="02JavaScriptObjects/header.png" alt="JavaScript">
+                <div class="lrcontainer">
+                    <div class="rightweek">
+                        <p style="color:white;">A website that demonstrates JavaScript Objects inluding Creation, Functions, Inheritance, Properties, Methods, Instantiation.
+                        The website can be viewed <a href="02JavaScriptObjects/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/blob/master/02JavaScriptObjects/index.html">here</a>.</p>
+                    </div>
+                    <div class="leftweek">
+                            <img class="piclink" src="02JavaScriptObjects/JSOsite.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="json">
+                <img class="weekheading" src="03JSON/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="leftweek">
+                        <p style="color:white;">A website that demonstrates JSON inluding JSON Parse and Stringify.
+                        The website can be viewed <a href="03JSON/index.html">here</a> and the source code can be viewed <a href="https://raw.githubusercontent.com/olsen-stettsen/olsen-stettsen.github.io/master/03JSON/index.html">here</a>.</p>
+                    </div>
+                    <div class="rightweek">
+                            <img class="piclink" src="03JSON/JSONsite.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="ajax">
+                <img class="weekheading" src="04AJAX/header.png" alt="AJAX" style="padding-right: 5%;"><img class="weekheading" src="05LocalStorage/header.png" alt=" & Local Storage">
+                <div class="lrcontainer">
+                    <div class="rightweek">
+                        <p style="color:white;">This Webpage uses JavaScript and PHP, JSON. It loads a database into a table. JavaScript allows the user
+                            to vote for movies they like and submit new ones. PHP is then used to save the page but is called with AJAX so that it runs in the
+                            background.
+                        The website can be viewed <a href="04AJAX/index.html">here</a> and the source code can be viewed <a href="https://raw.githubusercontent.com/olsen-stettsen/olsen-stettsen.github.io/master/04AJAX/index.html">here</a>.</p>
+                    </div>
+                    <div class="leftweek">
+                            <img class="piclink" src="04AJAX/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="domDocumentObjectModel">
+                <img class="weekheading" src="06 DOM Document Object Model/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="leftweek">
+                        <p style="color:white;">A website that demonstrates dynamic Webpage building with the use of the Document Object Model and JavaScript.
+                        The website can be viewed <a href="06 DOM Document Object Model/index.html">here</a> and the source code can be viewed <a href="https://raw.githubusercontent.com/olsen-stettsen/olsen-stettsen.github.io/master/06%20DOM%20Document%20Object%20Model/index.html">here</a>.</p>
+                    </div>
+                    <div class="rightweek">
+                            <img class="piclink" src="06 DOM Document Object Model/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="css3UsingJavaScript">
+                <img class="weekheading" src="07CSS3usingJavaScript/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="rightweek">
+                        <p style="color:white;">This entire website is style with JavaScript. Color, width, position of div elements, and even fuction that stand in place of hover and click are implemented with JavaScript alone.
+                        The website can be viewed <a href="07CSS3usingJavaScript/index.html">here</a> and the source code can be viewed <a href="https://raw.githubusercontent.com/olsen-stettsen/olsen-stettsen.github.io/master/07CSS3usingJavaScript%20/index.html">here</a>.</p>
+                    </div>
+                    <div class="leftweek">
+                            <img class="piclink" src="07CSS3usingJavaScript/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="css3TAT">
+                <img class="doubleheading" src="08CSS3TransitionsAnimationsandTransformations/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="leftweek">
+                        <p style="color:white;">Transitions, Animations, transformations allow properties of an element to be modified and scaled to match a new property value. This could be size, rotation, color, etc. JavaScript events can be used to change CSS properties and trigger the CSS animation, transition, or transformation.
+                        The website can be viewed <a href="08CSS3TransitionsAnimationsandTransformations/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/tree/master/08CSS3TransitionsAnimationsandTransformations">here</a>.</p>
+                    </div>
+                    <div class="rightweek">
+                            <img class="piclink" src="08CSS3TransitionsAnimationsandTransformations/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="html5TagsForMedia">
+                <img class="weekheading" src="10TagsforMedia/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="rightweek">
+                        <p style="color:white;">Tags are used like any other element to insert that element into a page. Media tags are used to embed media. Media elements also have properties like most elements and then some that are specific to that media. Canvas elements have a variety of properties that allow you to draw and embed images.
+                        The website can be viewed <a href="10TagsforMedia/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/tree/master/10TagsforMedia">here</a>.</p>
+                    </div>
+                    <div class="leftweek">
+                            <img class="piclink" src="10TagsforMedia/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="css3Transitions">
+                <img class="weekheading" src="11CSSTransitions/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="leftweek">
+                        <p style="color:white;">Transitions allow properties of an element to be modified and scaled to match a new property value. This could be size, color, etc. Trigger such as hover are used to cause these events. <span style="color: red;">Please see webpage above that contains more Transitions <a href="#css3TAT">here</a>.</span>
+                        The website can be viewed <a href="11CSSTransitions/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/tree/master/11CSSTransitions">here</a>.</p>
+                    </div>
+                    <div class="rightweek">
+                            <img class="piclink" src="11CSSTransitions/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+            <div class="week" id="css3Transforms">
+                <img class="weekheading" src="12Transforms/header.png" alt="JSON">
+                <div class="lrcontainer">
+                    <div class="rightweek">
+                        <p style="color:white;">Transforms allow properties of an element to be skewed, scaled, rotated and more. JavaScript events can be used to change CSS properties and trigger the CSS animation, transition, or transformation.
+                        The website can be viewed <a href="12Transforms/index.html">here</a> and the source code can be viewed <a href="https://github.com/olsen-stettsen/olsen-stettsen.github.io/tree/master/12Transforms">here</a>.</p>
+                    </div>
+                    <div class="leftweek">
+                            <img class="piclink" src="12Transforms/Capture.PNG" alt="Week 01">                   
+                    </div>
+                </div>
+            </div>
+
+        <button id="backToTop" onclick="window.location.href='#headingback'">Back to Top</button>
+</body>
+</html>

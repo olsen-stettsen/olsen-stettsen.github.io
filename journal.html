@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>Stettsen Olsen CIT 261 -Journal</title>
+    <link rel="stylesheet" type="text/css" href="stettsenolsenhome.css">
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                document.getElementById("backToTop").style.display = "block";
+            } else {
+                document.getElementById("backToTop").style.display = "none";
+            }
+        }/*
+        function popUpVis() {
+            if (document.getElementById("popUp").style.visibility == "visible") {
+                document.getElementById("popUp").style.visibility = "hidden";
+            } else {
+                document.getElementById("popUp").style.visibility = "visible";
+            }
+        }
+        function bybyPopup() {
+            document.getElementById("popUp").style.visibility = "hidden";
+        }*/
+        function adjustSize() {
+            var y = (window.innerHeight * .9);
+            var x = y + "px";
+            document.getElementById("popUp").style.maxHeight = x;
+            document.getElementById("popUp").style.maxWidth = y * .8 + "px";
+            /*document.getElementById("popUp").style.width = (window.innerWidth * .4) + "px";
+            document.getElementById("popUp").style.fontSize = .8 + "vw";
+            if (widow.innerWidth < 900) {
+                document.getElementsByClassName("tabs").style.fontSize = .6 + "vw";
+            } else {
+                document.getElementsByClassName("tabs").style.fontSize = 1 + "vw";
+            }*/
+            /*document.getElementById("popUp").style.width = (window.innerWidth * .8) + "px";*/
+        }
+    </script>
+</head>
+
+<body onload="adjustSize()">
+    <div id="headingback">
+        <div id="heading">
+            <div id="logo">
+                <img class="headingPic" src="Header5.png"><br>
+                <H1>CIT 261</H1>
+            </div>
+
+            <div class="navigation">
+                <button class="tabs" onclick="window.location.href='./index.html'">Code Fluency</button>
+                <!--<button class="tabs mobilebtn" onclick="popUpVis()">Pop Up</button>-->
+                <button class="tabs" onclick="window.location.href='./journal.html'">Journal</button>
+                <button class="tabs mobilebtn" onclick="window.open('https://github.com/olsen-stettsen/Code-Topic-Fluency.git')">View Code
+                    on GitHub</button>
+            </div>
+        </div>
+        <div id="qoute" style="float:right; color:white; font-size: 26pt; padding-right: 20px; padding-top: 20px;">
+            <p><i>"I wont be impressed with<br> technology until I can<br> download snacks"<br> -Jillian Michaels</i>
+            </p>
+        </div>
+    </div>
+
+        <div id="popUp">
+           
+            <div id="popUpflat">
+            </div>
+        </div>
+
+    <div id="content">
+        <!--Weekly, record your learning activities and experiences in a journal.
+            Reflect on your learning activities and experience.
+            Consider your openness to new ideas.
+            Consider your ability to rationally evaluation options and explain why options are selected.
+            Reflect on teamwork.
+            Reflect on your communication abilities.
+            Document your growth as it relates to the course outcomes.
+            Submit summary in Week 14.-->
+
+        <div class="journal" id="week 01">
+            <img class="weekheading" src="Week01/week01.png" alt="Week 01">
+            <div class="lrcontainer">
+                    <p style="color: white;">I set up my GitHub Website. I went through all the welcome material and gained a understanding of what is expected. </p>
+                <div class="leftweek">
+                                        
+                </div>
+                <div class="rightweek">
+                   
+                </div>
+            </div>
+        </div>
+        <div class="journal" id="week 02">
+                <img class="weekheading" src="Week02/week02.png" alt="Week 02">
+                <div class="lrcontainer">               
+                    <p style="color: white;">Ryan did a great job of teach our group about JavaScript. He hinted on JavaScript objects 
+                        which I currently don't know much about. I learned about the for each loop. By looking at the syntax I didn't get it 
+                        until it was pointed out to me that it's a call back function that loops itself. I was aware that JavaScript included 
+                        triple equals operator, but I had no idea what the differnce was. Now, I am aware that a data conversion happens when 
+                        using the double equals. A triple equals operator would come in handy. "On the Fly Functions" were also new to me. The 
+                        concept is still kind of weird. I'm not sure why you would create a function to destroy it. I'm sure I'll look back at 
+                        this and laugh. Our team works well together and offers insight. We have decided to use slack and zoom for communication. 
+                        I am starting my JavaScript Fluency webpage tonight or tomorrow.
+                        </p>
+                    <div class="leftweek">
+                                            
+                    </div>
+                    <div class="rightweek">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="journal" id="week 03">
+                <img class="weekheading" src="Week03/week03.png" alt="Week 02">
+                <div class="lrcontainer">               
+                    <p style="color: white;">I presented this week as did some on my class mates. I thought that "basic" JavaScript Objects were more complex than they are.
+                    I was able to create objects set to variable and create classes from functions. I was able to assign them properties and prototype methods.
+                I wish I knew more about standardization. It seems like there would be a set industry standard that is deemed "the best", but my team and I all
+                found vaious ways of doing the same thing.</p>
+                    <div class="leftweek">
+                                            
+                    </div>
+                    <div class="rightweek">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="journal" id="week 04">
+                <img class="weekheading" src="Week03/week03.png" alt="Week 02">
+                <div class="lrcontainer">               
+                    <p style="color: white;">This week I spent a lot of time looking at AJAX. Because life happened I wasn't able to
+                     write my code to pass it off this week. I bugeted my time so that if something happened I would not fall behind.
+                    I just need to try and get ahead again. AJAX is great for retrieving data from files on the server. I would like 
+                     to learn how to write to files as well. Our team met this week. Paul did a great job on JavaScript Objects.</p>
+                    <div class="leftweek">
+                                            
+                    </div>
+                    <div class="rightweek">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="journal" id="week 05">
+                <img class="weekheading" src="Week03/week03.png" alt="Week 02">
+                <div class="lrcontainer">               
+                    <p style="color: white;">I actually implemented AJAX this week but I've run into some snags with my HTML file.
+                    I want to run a PHP script using AJAX so that it doesn't have to reload the page. That is the beauty of AJAX is 
+                    that it runs in the background.I will use it to Post. I also need to go back over my JSON file and change it too.</p>
+                    <div class="leftweek">
+                                            
+                    </div>
+                    <div class="rightweek">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="journal" id="week 06">
+                <img class="weekheading" src="Week03/week03.png" alt="Week 02">
+                <div class="lrcontainer">               
+                    <p style="color: white;">This week I finished my AJAX site. I was also able to use local Storage to help me out.
+                    I hope I will be able to pass them both off with one site since it was a lot more work than I thought. Local Storage
+                    is very useful. It is like using session stored except it's bigger and doesn't expire. I like to use it the same way I 
+                    use the singleton class in android development. It's handy to not pass all the variables around.</p>
+                    <div class="leftweek">
+                                            
+                    </div>
+                    <div class="rightweek">
+                       
+                    </div>
+                </div>
+            </div>
+        <button id="backToTop" onclick="window.location.href='#headingback'">Back to Top</button>
+</body>
+
+</html>

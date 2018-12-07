@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> CSS3 using JavaScript Fluency - Stettsen Olsen</title>
+    <script>
+        function onLoad() {
+            //Background
+            document.body.style.backgroundImage = "url('back.jpg')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundRepeat = "no-repeat";
+            //Header
+            document.getElementById("header").style.backgroundColor = "rgb(255, 255, 255, 0.3)";
+            document.getElementById("header").style.paddingLeft = "20px";
+            document.getElementById("header").style.borderRadius = "12px";
+            document.getElementById("header").style.width = "75%";
+            //2nd Heading
+            document.getElementById("heading").style.color = "white";
+            //all
+            document.getElementById("all").style.width = "75%";
+            //in
+            document.getElementById("in").style.float = "left";
+            //output
+            document.getElementById("output").style.color = "white";
+            document.getElementById("output").onmouseover = function () {
+                this.style.color = "orange";
+            }
+            document.getElementById("output").onmouseleave = function () {
+                this.style.color = "white";
+            }
+            document.getElementById("output").onclick = function () {
+                document.getElementById("input2").value = this.innerHTML;
+                decode();
+            }
+            //return
+            document.getElementById("heading2").style.color = "white";
+            document.getElementById("return").style.float = "right";
+            document.getElementById("output2").style.color = "white";
+            document.getElementById("heading3").style.color = "white";
+        }
+        function hash() {
+            var input = document.getElementById("input").value;
+            var hash = "";
+            for (var i = 0; i < input.length; i++) {
+                hash += String.fromCharCode(3 + input[i].charCodeAt(0));
+            }
+            document.getElementById("output").innerHTML = hash;
+        }
+        function decode() {
+            var input = document.getElementById("input2").value;
+            var hash = "";
+            for (var i = 0; i < input.length; i++) {
+                hash += String.fromCharCode(input[i].charCodeAt(0) - 3);
+            }
+            document.getElementById("output2").innerHTML = hash;
+        }
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+    <div id="header">
+        <h1>CSS3 using JavaScript Fluency</h1>
+        <h2>Stettsen Olsen</h2>
+        <h3>CIT 261</h3>
+    </div>
+    <div id="all">
+        <div id="in">
+            <h3 id="heading">Encode A Message</h3>
+            <input oninput="hash()" id="input" type="text" placeholder="Enter a text to hash">
+            <h3 id="output">Your cyper coded message</h3>
+        </div>
+        <div id="return">
+            <h3 id="heading2">Decode A Message</h3>
+            <h5 id="heading3">(If you would like to decode what you just hashed<br> you can click the output for auto fill)</h5>
+            <input oninput="decode()" id="input2" type="text" placeholder="Hashed Message">
+            <h3 id="output2">Original Message</h3>
+        </div>
+    </div>
+</body>
+
+</html>

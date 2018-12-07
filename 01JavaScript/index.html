@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript Fluency - Stettsen Olsen</title>
+    <script>
+        function onLoad() {
+            document.body.style.backgroundColor = "gray";
+            document.getElementById("header").style.backgroundColor = "white";
+            document.getElementById("header").style.paddingLeft = "20px";
+            document.getElementById("demo1").style.backgroundColor = "red";
+            document.getElementById("demo2").style.backgroundColor = "white";
+            document.getElementById("demo3").style.backgroundColor = "blue";
+            document.getElementById("demo4").style.backgroundColor = "green";
+            document.getElementById("demo5").style.backgroundColor = "yellow";
+        }
+        function dogYears(hYears) {
+            var dYrs = hYears * 7;
+            document.getElementById("dogYears").innerText = "You are " + dYrs + " old in dog years.";
+        }
+        function forLoop() {
+            var name = document.getElementById('item2').value;
+            var backwards = "";
+            for (var i = 0; i < name.length + 1; i++) {
+                backwards += name.charAt(name.length - i);
+            }
+            document.getElementById("nameBackwards").innerText = backwards;
+        }
+        function conditional() {
+            var input = document.getElementById('item3').value;
+            var count = 0;
+            for (var i = 0; i < input.length + 1; i++) {
+                if (input.charAt(i) == 'a' || input.charAt(i) == 'e' || input.charAt(i) == 'i' || input.charAt(i) == 'o' || input.charAt(i) == 'u') {
+                    count++;
+                }
+            }
+            document.getElementById("condi").innerText = "There where " + count + " vowels in \"" + input + "\"";
+        }
+        function arrays() {
+            var input = document.getElementById('item4').value;
+            var container = input.split(" ");
+            var output = "";
+            for (var i = 0; i < container.length; i++) {
+                output += "[" + container[i] + "] ";
+            }
+            document.getElementById("_array").innerText = "There are " + container.length + " items in the array and they are : " + output;
+        }
+        function arraysWithKeys() {
+            var key = document.getElementById('item5').value;
+            var value = document.getElementById('item6').value;
+            var key2 = document.getElementById('item7').value;
+            var value2 = document.getElementById('item8').value;
+            var key3 = document.getElementById('item9').value;
+            var value3 = document.getElementById('item10').value;
+            var key4 = document.getElementById('item11').value;
+            var value4 = document.getElementById('item12').value;
+            var keyReturn = document.getElementById('item13').value;
+            var container = [];
+            container[key] = value;
+            container[key2] = value2;
+            container[key3] = value3;
+            container[key4] = value4;
+            var output = "";
+            if (container[keyReturn] != undefined) {
+                output = container[keyReturn];
+            }
+            else {
+                output = "Value does not exist"
+            }
+            document.getElementById("_value").innerText = output;
+        }
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+    <div id="header">
+        <h1>Javascript Fluency</h1>
+        <h2>Stettsen Olsen</h2>
+        <h3>CIT 261</h3>
+    </div>
+
+    <h3>All style elements on this page are done with Javascript</h3><br><br>
+
+    <div id="demo1" class="demo">
+        <h3>Please enter your age: </h3>
+        <input oninput="dogYears(this.value)" id="item1">
+        <h3 id="dogYears">Using simple math....</h3>
+    </div><br>
+
+    <div id="demo2" class="demo">
+        <h3>Ever wonder what you name looks like backwards? </h3>
+        <input id="item2">
+        <button onclick="forLoop()" type="button">Go!</button>
+        <h3 id="nameBackwards">Using a for loop....</h3>
+    </div><br>
+
+    <div id="demo3" class="demo">
+        <h3>Need to know how many vowels are in a sentence or word! Lucky you! </h3>
+        <input id="item3">
+        <button onclick="conditional()" type="button">Go!</button>
+        <h3 id="condi">Using a conditional statements....</h3>
+    </div><br>
+
+    <div id="demo4" class="demo">
+        <h3>Add items into the array seperated with spaces. Example: dog cat fish</h3>
+        <input id="item4">
+        <button onclick="arrays()" type="button">Go!</button>
+        <h3 id="_array">Items in array</h3>
+    </div><br>
+
+    <div id="demo5" class="demo">
+        <h3>Now we will store items in an array using a key<br> please store a values and a key with each.<br>
+            type in a key that you wish to retrieve below.</h3>
+        <input id="item5" placeholder="Key"><input id="item6" placeholder="Value"><br>
+        <input id="item7" placeholder="Key"><input id="item8" placeholder="Value"><br>
+        <input id="item9" placeholder="Key"><input id="item10" placeholder="Value"><br>
+        <input id="item11" placeholder="Key"><input id="item12" placeholder="Value"><br>
+        <!--<button onclick="arrays()" type="button">Store!</button>-->
+        <h3>Now, to retrieve a value by entering the key you used.</h3>
+        <input id="item13">
+        <button onclick="arraysWithKeys()" type="button">Retrieve!</button>
+        <h3 id="_value">Value</h3>
+
+    </div>
+
+</body>
+
+</html>

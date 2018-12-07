@@ -1,0 +1,4 @@
+{"title":"Assignment 1","Month":"October","day":"02","Year":"2018","_class":"CIT333"}
+{"title":"Assignment 2","Month":"October","day":"04","Year":"2018","_class":"CS250"}
+{"title":"Assignment 3","Month":"October","day":"05","Year":"2018","_class":"CS303"}
+{"title":"Assignment 4","Month":"October","day":"06","Year":"2018","_class":"CIT246"}

@@ -1,0 +1,108 @@
+body{
+    margin: 0%;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    background-image: url("backgroundgrass.png");
+    background-size: cover;
+}
+#heading{
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0%;
+}
+#header{
+    margin: 0%;
+}
+#navigation{
+    background-color: #000000;
+}
+#navbtns{
+    text-align: center;
+}
+.navbtn{
+    font-size: 18px;
+    border: 0;
+    background-color: #000000;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    -webkit-transition: color .5s; /* Safari */
+    transition: color .5s;
+}
+.btn{
+    font-size: 18px;
+    border: 0;
+    background-color: #000000;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border-radius: 12px;
+    color: #ffffff;
+    -webkit-transition: color .5s; /* Safari */
+    transition: color .5s;
+}
+.btn:hover{
+    color: #8cc63e;
+}
+.btn:active{
+    color: #00ba09;
+}
+.choose2btn{
+    width: 25vw;
+    height: 25vw;
+    color: #000000;
+    border-radius: 12%;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    border: #000000 solid 2px;
+    background-color: #00000000;
+    box-shadow: 0px 150px 52px -93px rgba(0,0,0,0.47);
+    -webkit-transition: all .5s; /* Safari */
+    transition: all .5s;
+}
+.choose2btn:hover{
+    width: 26vw;
+    height: 26vw;
+    box-shadow: 0px 200px 52px -93px rgba(0,0,0,0.47);
+    background-color: #ffffff8c;
+    border: #00ba09 solid 4px;
+    color: #00ba09;
+}
+.choose2btn:active{
+    border: #8cc63e solid 4px;
+    color: #8cc63e;    
+}
+#choose2btnleft{
+    float: left;
+}
+#choose2btnright{
+    float: right;
+}
+#or{
+    margin-top: 7vw;
+    height: 10vw;
+}
+#backgroundfilter{
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    background-color: #ffffff9d;
+}
+#content{
+    margin: auto;
+    max-width: 1140px;
+}
+#updateEnterPrompt{
+    display: block;
+    margin-top: 5%;
+    /*border: 5px solid #000000;
+    border-radius: 12px;
+    background-color: #ffffff;*/
+    text-align: center;
+    padding: 10px;
+    -webkit-transition: all .5s; /* Safari */
+    transition: all .5s;
+}
+#newMemberInput{
+    display: none;
+    -webkit-transition: all .5s; /* Safari */
+    transition: all .5s;
+}

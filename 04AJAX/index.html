@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AJAX localStorage Fluency - Stettsen Olsen</title>
+    <style>
+        #movieRequests {
+            border: 2px solid white;
+            border-radius: 12px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+    <script>
+        function User() {
+            this.name;
+            this.displayName;
+        }
+        function Comment() {
+            this.commenter;
+            this.comment_message;
+        }
+        Comment.prototype.comment_AsString = function () {
+            return "\"" + this.comment_message + "\"" + " \-" + this.commenter;
+        };
+        function Movie() {
+            this.movieTitle;
+            this.personRequest;
+            this.votes;
+            this.comments;
+        }
+        Movie.prototype.commentsAsString = function () {
+            var comment = "";
+            for (var i = 0; i < this.comments; i++) {
+                comment += this.comments[i].comment_AsString() + "\n";
+            }
+            return comment;
+        };
+        /********************************
+        *Load
+        ********************************/
+        function load() {
+            login();
+            //clearLocalStorage();
+            clearLocalStorageDataBase();
+            loadDatabase();
+
+        }
+        /********************************
+        *Login
+        ********************************/
+        function login() {
+            var name;
+            if (localStorage.getItem("userName") == "" || localStorage.getItem("userName") === null) {
+                name = prompt("Please ether your name");
+                localStorage.setItem("userName", name);
+                localStorage.setItem("displayName", name);
+            }
+            else {
+                name = localStorage.getItem("userName");
+            }
+            document.getElementById('userwelcome').innerHTML = "Welcome " + name + "!";
+        }
+        /********************************
+        *changeUser
+        ********************************/
+        function changeUser() {
+            var name = prompt("Please ether your name");
+
+            localStorage.setItem("userName", name);
+            localStorage.setItem("displayName", name);
+
+            document.getElementById('userwelcome').innerHTML = "Welcome " + name + "!";
+        }
+        /********************************
+        *clearLocalStorage
+        ********************************/
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
+        /********************************
+        *clearLocalStorageDataBase
+        ********************************/
+        function clearLocalStorageDataBase() {
+            localStorage.removeItem('database');
+        }
+        /********************************
+        *loadDatabase
+        ********************************/
+        function loadDatabase() {
+            //alert(localStorage.getItem('database')); //for testing
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var table = document.getElementById('movieRequests');
+                    var database = JSON.parse(this.responseText);
+                    //alert(this.responseText); // for testing
+                    for (var i = 0; i < database.length; i++) {
+                        var movie = database[i];
+                        var row = table.insertRow();
+                        var row_title = row.insertCell(0);
+                        var row_request = row.insertCell(1);
+                        var row_votes = row.insertCell(2);
+                        var row_comments = row.insertCell(3);
+                        var row_button = row.insertCell(4);
+                        row_title.innerHTML = movie.movieTitle;
+                        row_request.innerHTML = movie.personRequest;
+                        row_votes.innerHTML = movie.votes;
+                        row_comments.innerHTML = movie.comments;
+                        row_button.innerHTML = "<button onclick='getId(this)' style='border-radius: 12px; background-color: orange;'>Add Vote</button>"
+                        localStorage.setItem('database', JSON.stringify(database));
+                        //alert(localStorage.getItem('database')); //for testing
+                    }
+                }
+            };
+            xhttp.open("GET", 'database.txt', true);
+            xhttp.setRequestHeader("Cache-Control", "max-age=0"); // the cache will hold old data if not cleared
+            xhttp.send();
+        }
+        /********************************
+        *addToDataBase
+        ********************************/
+        function addToDataBase() {
+            var movie = new Movie();
+            movie.movieTitle = prompt("Please enter the movie title");
+            movie.comments = prompt("Would you like to add any comments?");
+            movie.votes = 1;
+            movie.personRequest = localStorage.getItem("displayName");
+            var table = document.getElementById('movieRequests');
+            if (movie.movieTitle != "" && movie.movieTitle != null) {
+                var row = table.insertRow();
+                var row_title = row.insertCell(0);
+                var row_request = row.insertCell(1);
+                var row_votes = row.insertCell(2);
+                var row_comments = row.insertCell(3);
+                var row_button = row.insertCell(4);
+                row_title.innerHTML = movie.movieTitle;
+                row_request.innerHTML = movie.personRequest;
+                row_votes.innerHTML = movie.votes;
+                row_comments.innerHTML = movie.comments;
+                row_button.innerHTML = "<button onclick='getId(this)' style='border-radius: 12px; background-color: orange;'>Add Vote</button>"
+
+                var database = [];
+                if (localStorage.getItem('database') != null) {
+                    var d2 = localStorage.getItem('database');
+                    if (d2 != "") {
+                        database = JSON.parse(d2);
+                    }
+                }
+                database.push(movie);
+                localStorage.setItem('database', JSON.stringify(database));
+                write(JSON.stringify(database));
+            }
+        }
+        /********************************
+        *getId
+        ********************************/
+        function getId(element) {
+            //alert(/*"row" + */element.parentNode.parentNode.rowIndex);  //for testing
+            //+ " - column" + element.parentNode.cellIndex);
+            addVote(element.parentNode.parentNode.rowIndex);
+        }
+        /********************************
+        *addVote
+        ********************************/
+        function addVote(position) {
+            var database = [];
+            if (localStorage.getItem('database') != null) {
+                var d2 = localStorage.getItem('database');
+                if (d2 != "") {
+                    database = JSON.parse(d2);
+                }
+            }
+
+            database[position - 1].votes += 1;
+            var count = database[position - 1].votes;
+            document.getElementById('movieRequests').rows[position].cells[2].innerHTML = count;
+            localStorage.setItem('database', JSON.stringify(database));
+            write(JSON.stringify(database));
+        }
+        /********************************
+        *write
+        ********************************/
+        function write(input) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //alert(this.responseText);
+                }
+            };
+            xmlhttp.open("GET", "savedata.php?q=" + input, true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body style="background: url('earthfromthemoon.jpg'); background-size: cover; background-repeat: no-repeat;" onload="load()">
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+    <div id="header">
+        <button onclick="changeUser()" style="float: right; border-radius: 12px; background-color: orange;">Change User</button>
+        <h3 id="userwelcome" style="float: right; color:white;"></h3>
+        <div id="header">
+        <h1 style="color: white;">AJAX and LocalStorage Fluency</h1>
+        <h2 style="color: white;">Stettsen Olsen</h2>
+        <h3 style="color: white;">CIT 261</h3>
+    </div>
+    <div id="list" style="text-align: center;">
+        <h1 style="color: white;">Favorite Movies</h1>
+        <button onclick="addToDataBase()" style="border-radius: 12px; background-color: orange;">Add Movie</button>
+        <table id="movieRequests" style="background:rgba(255, 255, 255, 0.5); border: black; border-radius: 12px; margin-top: 20px; width: 75%;">
+            <tr>
+                <th>Movie or Show Title</th>
+                <th>Submitter</th>
+                <th>Votes</th>
+                <th>Comments</th>
+            </tr>
+        </table>
+    </div>
+    <div id="chat">
+
+    </div>
+
+</body>
+
+</html>

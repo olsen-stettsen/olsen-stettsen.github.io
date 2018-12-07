@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM Document Object Model Fluency - Stettsen Olsen</title>
+    <style>
+        .demo {
+            padding-left: 20px;
+            background-color: rgba(255, 255, 255, 0.384);
+        }
+    </style>
+    <script>
+        /*************************
+        *load
+        *************************/
+        function load() {
+            demo1();
+            demo2();
+        }
+        /*************************
+        *DEMO Script
+        *************************/
+        function demo1() {
+            var demo1 = document.createElement("P");
+            var t = document.createTextNode("I am a paragraph that was created in JavaScript. As a text node I was appended as a Child to the created P element. ");      // Create a text node
+            demo1.appendChild(t);                                          // Append the text to <p>
+            document.getElementById("demo1").appendChild(demo1);
+
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("I am a button Created the same way");
+            btn.appendChild(t);
+            document.getElementById("demo1").appendChild(btn);
+        }
+        function demo2() {
+            var listItem = document.createElement("LI");
+            var textnode = document.createTextNode("Creating New List Items that weren't on this list to begin with. Guess which one it is.");
+            listItem.appendChild(textnode);
+
+            var thingsILike = document.getElementById("thingsILike");
+            thingsILike.insertBefore(listItem, thingsILike.childNodes[4]);
+        }
+        function demo3() {
+            var list3 = document.getElementById("list3");
+            list3.removeChild(list3.childNodes[1]);
+        }
+        function demo4(){
+            document.getElementById("demo4heading").innerHTML = "Pickles";
+            document.getElementById("demo4heading").style.color = "green";
+            document.getElementById("btn4").innerHTML = "Tomatoes";
+            document.getElementById("btn4").style.backgroundColor ="red";
+            document.getElementById("list4").innerHTML = "bananas";
+            document.getElementById("list4").style.background = "yellow";
+            document.getElementById("list4").style.width = "10%";
+            var heading = document.createElement("H3");
+            var t = document.createTextNode("DOM can be used to apply style like above. By the way Click Tomatoes.");
+            heading.appendChild(t);
+            document.getElementById("demo4").appendChild(heading);
+        }
+    </script>
+</head>
+
+<body style="background: url('pexels-photo-640781.jpeg'); background-size: cover; background-repeat: no-repeat;" onload="load()">
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+
+    <div id="header">
+        <h1>DOM Document Object Model Fluency</h1>
+        <h2>Stettsen Olsen</h2>
+        <h3>CIT 261</h3>
+    </div>
+    <div id="demo1" class="demo" style="border-style: solid; color: black; border-width: 5px; border-radius: 12px;">
+    </div>
+    <div id="demo2" class="demo" style="border-style: solid; color: black; border-width: 5px; border-radius: 12px;">
+        <h3>Things I like</h3>
+        <ul id="thingsILike">
+            <li>Candy</li>
+            <li>Christmas</li>
+            <li>Halloween</li>
+            <li>Basketball</li>
+        </ul>
+    </div>
+    <div id="demo3" class="demo" style="border-style: solid; color: black; border-width: 5px; border-radius: 12px;">
+            <h3>Things I like... to delete</h3>
+            <button onclick="demo3()">I delete things</button>
+            <ul id="list3">
+                <li>Headaches</li>
+                <li>Sun Burns</li>
+                <li>Rotten Milk that was forgotten in the fridge</li>
+                <li>Dirty Diapers</li>
+            </ul>
+        </div>
+        <div id="demo4" class="demo" style="border-style: solid; color: black; border-width: 5px; border-radius: 12px;">
+                <h3 id="demo4heading">I am a heading for the forth demo</h3>
+                <button id="btn4" onclick="demo4()">DOM can be used to change values and innerHTML or even style</button>
+                <ul id="list4">
+                    <li>Headaches</li>
+                    <li>Sun Burns</li>
+                    <li>Rotten Milk that was forgotten in the fridge</li>
+                    <li>Dirty Diapers</li>
+                </ul>
+            </div>
+</body>
+
+</html>

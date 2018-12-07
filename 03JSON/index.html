@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON Fluency - Stettsen Olsen</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        
+        h1, h3, p {
+            color: white;
+        }
+        h2 {
+            color: red;
+        }
+        .demo {
+            padding-left: 20px;
+        }
+        </style>
+    <script>
+        function Person(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        };
+        Person.prototype.getName = function () {
+            return this.name;
+        };
+        Person.prototype.getAge = function () {
+            return this.age;
+        };
+        Person.prototype.getGender = function () {
+            return this.gender;
+        };
+
+        function Student(name, age, gender, letterGrade) {
+            Person.call(this, name, age, gender);
+            this.letterGrade = letterGrade;
+        }
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Student.prototype.getLetterGrade = function () {
+            return this.letterGrade;
+        }
+        function Tree() {
+            this.name = "";
+            this.branches = 0;
+            this.leaves = 0;
+        };
+
+        /*************************
+        *DEMO Script
+        *************************/
+        function demo1() {
+            var student = new Student(document.getElementById('item4').value, document.getElementById('item5').value,
+                document.getElementById('item6').value, document.getElementById('item7').value);
+            var studentJSON = JSON.stringify(student);
+
+            document.getElementById("string1").innerText = studentJSON;
+        }
+        function demo2() {
+            var student2 = JSON.parse(document.getElementById('string2').value);
+
+            document.getElementById("name2").innerText = student2.name;
+            document.getElementById("age2").innerText = student2.age;
+            document.getElementById("gender2").innerText = student2.gender;
+            document.getElementById("grade2").innerText = student2.letterGrade;
+        }
+        // Declaration with methods
+        var bob = {
+            name: "bob",
+            letterGrade: "Junior",
+            age: "29",
+            hairColor: "blonde",
+            getName: function () {
+                alert(this.name);
+            }
+        }
+
+        function Assignment() {
+            this.title;
+            this.Month;
+            this.day;
+            this.Year;
+            this._class;
+        };
+        Assignment.prototype.getAsString = function () {
+            return this.title + " for class " + this._class + " is due on " + this.Month + "/" + this.day + "/" + this.Year + ".";
+        };
+        function demo3() {
+            var assignment = new Assignment();
+
+            assignment.title = document.getElementById('item10').value;
+            assignment.Month = document.getElementById('item11').value;
+            assignment.day = document.getElementById('item12').value;
+            assignment.Year = document.getElementById('item13').value;
+            assignment._class = document.getElementById('item14').value;
+
+            var table = document.getElementById('assignmentsTable');
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = assignment.title;
+            cell2.innerHTML = assignment.Month + "/" + assignment.day + "/" + assignment.Year;
+            cell3.innerHTML = assignment._class;
+        }
+        function demo4() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //
+                    var table = document.getElementById('assignmentsTable2');
+                    var incoming = this.responseText.split('\n');
+                    for (var i = 0; i < incoming.length; i++) {
+                        var assignment = JSON.parse(incoming[i]);
+                        var row = table.insertRow(0);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        cell1.innerHTML = assignment.title;
+                        cell2.innerHTML = assignment.Month + "/" + assignment.day + "/" + assignment.Year;
+                        cell3.innerHTML = assignment._class;
+                    }
+                }
+            };
+            xhttp.open("GET", "database.txt", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <a href="../index.html" style="color: orange;">Back to Main</a>
+
+    <div id="header">
+        <h1>JSON Fluency</h1>
+        <h2>Stettsen Olsen</h2>
+        <h3>CIT 261</h3>
+    </div>
+    <div id="demo1" class="demo" style="border-style: solid; color: blue; border-width: 5px; border-radius: 12px;">
+        <h3>We will create a Student object and then Stringify it!</h3>
+        NAME:<input id="item4">
+        AGE: <input id="item5">
+        GENDER: <input id="item6">
+        LETTER GRADE: <input id="item7">
+        <button onclick="demo1()" type="button">Go!</button>
+        <h3 id="string1">Object as a String</h3>
+    </div>
+    <div id="demo2" class="demo" style="border-style: solid; color:chartreuse; border-width: 5px; border-radius: 12px;">
+        <h3>Now copy the JSON above and we will parse it to turn it back into an object!</h3>
+        STRING:<input id="string2"><br>
+        NAME:<h3 id="name2"></h3>
+        AGE: <h3 id="age2"></h3>
+        GENDER: <h3 id="gender2"></h3>
+        LETTER GRADE: <h3 id="grade2"></h3>
+        <button onclick="demo2()" type="button">Go!</button>
+    </div>
+    <div id="demo3" class="demo" style="border-style: solid; color: purple; border-width: 5px; border-radius: 12px;">
+        <h3>We will create a Assignments and add them to an array</h3>
+        ASSIGNMENT NAME:<input id="item10"><br>
+        DUE DATE: <input id="item11" placeholder="October"><input id="item12" placeholder="02"><input id="item13"
+            placeholder="2018"><br>
+        CLASS: <input id="item14">
+        <button onclick="demo3()" type="button">Go!</button>
+        <h3 id="string3">Assignments<br></h3>
+        <table id="assignmentsTable">
+        </table>
+    </div>
+    <div id="demo4" class="demo" style="border-style: solid; color: red; border-width: 5px; border-radius: 12px;">
+        <button onclick="demo4()" type="button">Go!</button>
+        <h3 id="string4">Populate assignment database from file. This is done with AJAX<br></h3>
+        <table id="assignmentsTable2">
+        </table>
+    </div>
+</body>
+
+</html>
