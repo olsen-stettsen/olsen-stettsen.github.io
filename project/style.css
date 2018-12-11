@@ -1,9 +1,16 @@
 body{
     margin: 0%;
+    height: 100%;
+    width: 100%;
     font-family: "Lato", sans-serif;
     font-size: 18px;
+}
+#background{
     background-image: url("backgroundgrass.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: background-image 1s ease-in-out;
+    transition: background-image 1s ease-in-out;
 }
 #heading{
     text-align: center;
@@ -32,8 +39,6 @@ body{
     font-size: 18px;
     border: 0;
     background-color: #000000;
-    padding-bottom: 15px;
-    padding-top: 15px;
     border-radius: 12px;
     color: #ffffff;
     -webkit-transition: color .5s; /* Safari */
@@ -103,6 +108,21 @@ body{
 }
 #newMemberInput{
     display: none;
+    margin: 0 auto;
     -webkit-transition: all .5s; /* Safari */
     transition: all .5s;
+    max-width: 500px;
+    padding-bottom: 40px;
+}
+.nMInput{
+    width: 85%;
+    border-radius: 6px;
+}
+#existingMemberInput{
+    display: none;
+    margin: 0 auto;
+    -webkit-transition: all .5s; /* Safari */
+    transition: all .5s;
+    max-width: 500px;
+    padding-bottom: 40px;
 }
