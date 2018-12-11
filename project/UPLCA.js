@@ -107,6 +107,7 @@ function submitNewMember(){
  * Update Existing Member
  *********************/
 function updateExistingMember(){
+    dbLookup();
 }
 /********************************
  *write
