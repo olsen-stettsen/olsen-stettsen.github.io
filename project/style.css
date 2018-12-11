@@ -139,3 +139,6 @@ body{
 .iTag{
     font-size: 12pt;
 }
+#thankYou{
+    display: none;
+}

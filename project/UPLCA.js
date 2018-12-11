@@ -70,6 +70,10 @@ function existingMemberVisible(){
     document.getElementById("content").style.backgroundColor = "#ffffffd8";
     document.getElementById("backfilter").style.backgroundColor = "#ffffffd8";
 }
+function displayThankYou(){
+    document.getElementById("newMemberInput").style.display = "none";
+    document.getElementById("thankYou").style.display = "block";   
+}
 /*************************************************************
  * Program
  ************************************************************/
@@ -102,6 +106,8 @@ function submitNewMember(){
     member.personllicense = document.getElementById("personallicense").value;
     member.email = document.getElementById("email").value;
     write(JSON.stringify(member));
+    displayThankYou();
+    populateThankYouData(member);    
 }
 /**********************
  * Update Existing Member
@@ -122,6 +128,10 @@ function write(input) {
     xmlhttp.open("GET", "save.php?q=" + input, true);
     xmlhttp.send();
 }
+/********************************
+ *dbLookup
+ *looks up the member information on the server side
+********************************/
 function dbLookup(){
     var input = "test";
     var xmlhttp = new XMLHttpRequest();
@@ -132,4 +142,19 @@ function dbLookup(){
     };
     xmlhttp.open("GET", "dbLookup.php?q=" + input, true);
     xmlhttp.send();
+}
+/********************************
+ *populateThankYouData
+********************************/
+function populateThankYouData(member){
+    document.getElementById("thankYouNameh1").innerHTML = "Thank you, " + member.firstName +"!";
+    document.getElementById("rfirstName").innerHTML = member.firstName;
+    document.getElementById("rlastName").innerHTML = member.lastName;
+    document.getElementById("rbusinessName").innerHTML = member.businessName;
+    document.getElementById("rbusinessAddress").innerHTML = member.businessAddress;
+    document.getElementById("rzipCode").innerHTML = member.zip;
+    document.getElementById("rstate").innerHTML = member.state;
+    document.getElementById("rbusinessLicense").innerHTML = "4000-" + member.businesslicense;
+    document.getElementById("rpersonalLicense").innerHTML = "4001-" + member.personllicense;
+    document.getElementById("remail").innerHTML = member.email;
 }
