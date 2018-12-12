@@ -112,20 +112,22 @@ function Member() {
 /**********************
  * Submit new Member
  *********************/
-function submitNewMember(){
-    var member = new Member();
-    member.firstName = document.getElementById("firstName").value;
-    member.lastName = document.getElementById("lastName").value;
-    member.businessName = document.getElementById("businessName").value;
-    member.businessAddress = document.getElementById("businessAddress").value;
-    member.zip = document.getElementById("zipcode").value;
-    member.state = document.getElementById("state").value;
-    member.businesslicense = document.getElementById("businesslicense").value;
-    member.personllicense = document.getElementById("personallicense").value;
-    member.email = document.getElementById("email").value;
-    localStorage.setItem("member", JSON.stringify(member));
-    displayThankYou();
-    populateThankYouData(member);    
+function submitNewMember() {
+    if (checkBeforeSubmit()) {
+        var member = new Member();
+        member.firstName = document.getElementById("firstName").value;
+        member.lastName = document.getElementById("lastName").value;
+        member.businessName = document.getElementById("businessName").value;
+        member.businessAddress = document.getElementById("businessAddress").value;
+        member.zip = document.getElementById("zipcode").value;
+        member.state = document.getElementById("state").value;
+        member.businesslicense = document.getElementById("businesslicense").value;
+        member.personllicense = document.getElementById("personallicense").value;
+        member.email = document.getElementById("email").value;
+        localStorage.setItem("member", JSON.stringify(member));
+        displayThankYou();
+        populateThankYouData(member);
+    }
 }
 /**********************
  * Update Existing Member
@@ -218,31 +220,83 @@ function fillFields(){
  * Form Validation
  ************************************************************/
 /**********************
- * New Member
+ * onInputValidate
  *********************/
 function onInputValidate(){
     document.getElementById("firstName").oninput = function(){ validationCSS(validateFirstName(), "firstName"); };
-    document.getElementById("lastName").oninput = function(){ validationCSS(validateLastName(), "lastName"); };/*
-    document.getElementById("businessName").value = member.businessName;
-    document.getElementById("businessAddress").value = member.businessAddress;
-    document.getElementById("zipcode").value = member.zip;
-    document.getElementById("state").value = member.state;
-    document.getElementById("businesslicense").value = member.businesslicense;
-    document.getElementById("personallicense").value = member.personllicense;*/
+    document.getElementById("lastName").oninput = function(){ validationCSS(validateLastName(), "lastName"); };
+    document.getElementById("businessName").oninput = function(){ validationCSS(validateBusinessName(), "businessName"); };
+    document.getElementById("businessAddress").oninput = function(){ validationCSS(validateBusinessAddress(), "businessAddress"); };
+    document.getElementById("zipcode").oninput = function(){ validationCSS(validateZip(), "zipcode"); };
+    document.getElementById("state").oninput = function(){ validationCSS(validateState(), "state"); };
+    document.getElementById("businesslicense").oninput = function(){ validationCSS(validateBusinesslicense(), "businesslicense"); };
+    document.getElementById("personallicense").oninput = function(){ validationCSS(validatePersonallicense(), "personallicense"); };
     document.getElementById("email").oninput = function(){ validationCSS(validateEmail(), "email"); };
 }
+/**********************
+ * Validation Methods
+ *********************/
 function validateFirstName() {
     var name = document.getElementById("firstName").value;
     var regularEx = /^[a-z ,.'-]+$/i;
     return regularEx.test(name);
-  }
-  function validateLastName() {
+}
+function validateLastName() {
     var name = document.getElementById("lastName").value;
     var regularEx = /^[a-z ,.'-]+$/i;
     return regularEx.test(name);
-  }
+}
+function validateBusinessName() {
+    var name = document.getElementById("businessName").value;
+    var regularEx = /^[a-z0-9 ,.'-]+$/i;
+    return regularEx.test(name);
+}
+function validateBusinessAddress() {
+    var address = document.getElementById("businessAddress").value;
+    var regularEx = /^[a-z0-9 ,.'-]+$/i;
+    return regularEx.test(address);
+}
+function validateZip() {
+    var zip = document.getElementById("zipcode").value;
+    var regularEx = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    return regularEx.test(zip);
+}
+function validateState() {
+    var s = document.getElementById("state").value;
+    var state = s.toUpperCase()
+    document.getElementById("state").value = state;
+    var regularEx = /^\s?\b([A-Z][A-Z])\b\s?$/;
+    var states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+                  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+                  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+                  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+                  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
+    var isState = false;
+    for(var count = 0; count < states.length; count++){
+        if(state == states[count]){
+            isState = true;
+        }
+    }
+    return regularEx.test(state) && isState;
+}
+function validateBusinesslicense() {
+    var businesslicense = document.getElementById("businesslicense").value;
+    var regularEx = /^[0-9]{3,5}?$/;
+    return regularEx.test(businesslicense);
+}
+function validatePersonallicense() {
+    var personallicense = document.getElementById("personallicense").value;
+    var regularEx = /^[0-9]{4,5}?$/;
+    return regularEx.test(personallicense);
+}
 function validateEmail() {
     var email = document.getElementById("email").value;
     var regularEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regularEx.test(email);
-  }
+}
+/**********************
+ * check Before Submit
+ *********************/
+function checkBeforeSubmit(){
+    return validateFirstName() && validateLastName() && validateBusinessName() && validateBusinessAddress() && validateZip() && validateState() && validateBusinesslicense() && validatePersonallicense() && validateEmail();
+}
