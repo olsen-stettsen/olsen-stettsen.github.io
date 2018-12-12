@@ -6,6 +6,7 @@ function onload(){
  * CSS
  ************************************************************/
 function listen(){
+    //clicks
     document.getElementById("navbtnHome").onclick = function () { location.href = "http://upcla.com/"; this.style.color = "#00ba09"};
     document.getElementById("navbtnHome").addEventListener("mouseover", changeColorbtn);
     document.getElementById("choose2btnleft").addEventListener("click", newMemberVisible);
@@ -16,6 +17,11 @@ function listen(){
     document.getElementById("newMemberbtn").addEventListener("click", newMemberVisible);
     document.getElementById("submitnewbtn").addEventListener("click", submitNewMember);
     document.getElementById("submitexistingbtn").addEventListener("click", updateExistingMember);
+    document.getElementById("newconfirm").addEventListener("click", confirmNew);
+    document.getElementById("editbtn").addEventListener("click", newMemberVisible);
+
+    //validation input
+    onInputValidate();
 }
 function changeColorbtn(event){
     var oColor = event.target.style.color;
@@ -25,7 +31,6 @@ function changeColorbtn(event){
 function css(){
     setHeaderHeight();
     alignFilterAndBackground();
-    //centerPrompt();
     startUpButtonAppearFade();
 }
 function setHeaderHeight(){
@@ -38,9 +43,6 @@ function alignFilterAndBackground(){
     document.getElementById("backgroundfilter").style.height = window.innerHeight - document.getElementById("header").clientHeight + "px";
     document.getElementById("background").style.height = window.innerHeight + "px";
 }
-function centerPrompt(){
-    document.getElementById("updateEnterPrompt").style.marginTop = ((document.getElementById("backgroundfilter").style.height - document.getElementById("updateEnterPrompt").style.height) / 2) + "px";
-}
 function startUpButtonAppearFade(){
     var navbtn = document.getElementsByClassName("navbtn");
     for (var i = 0; i < navbtn.length; i++){
@@ -51,20 +53,23 @@ function newMemberVisible(){
     document.getElementById("updateEnterPrompt").style.display = "none";
     document.getElementById("newMemberInput").style.display = "block";
     document.getElementById("existingMemberInput").style.display = "none";
-    document.getElementById("background").style.backgroundImage = "url('utah-photo-21.jpg')"
+    document.getElementById("thankYou").style.display = "none";
+    document.getElementById("background").style.backgroundImage = "url('utah-photo-21.jpg')";
     document.getElementById("content").style.backgroundColor = "#ffffffd8";
     document.getElementById("backfilter").style.backgroundColor = "#ffffffd8";
 }
 function twoChoiceVisible(){
     document.getElementById("updateEnterPrompt").style.display = "block";
     document.getElementById("newMemberInput").style.display = "none";
-    document.getElementById("existingMemberInput").style.display = "none"
+    document.getElementById("existingMemberInput").style.display = "none";
+    document.getElementById("thankYou").style.display = "none";
     document.getElementById("background").style.backgroundImage = "url('backgroundgrass.png')"    
     document.getElementById("content").style.backgroundColor = "#ffffff00";
 }
 function existingMemberVisible(){
     document.getElementById("updateEnterPrompt").style.display = "none";
     document.getElementById("newMemberInput").style.display = "none";
+    document.getElementById("thankYou").style.display = "none";
     document.getElementById("existingMemberInput").style.display = "block";
     document.getElementById("background").style.backgroundImage = "url('utah-photo-21.jpg')";
     document.getElementById("content").style.backgroundColor = "#ffffffd8";
@@ -73,6 +78,19 @@ function existingMemberVisible(){
 function displayThankYou(){
     document.getElementById("newMemberInput").style.display = "none";
     document.getElementById("thankYou").style.display = "block";   
+}
+function validationCSS(method, input){
+    var inputaster = "v" + input;
+    if(!method){
+        document.getElementById(inputaster).style.display = "block";
+        document.getElementById(input).style.border = "2px solid #ff0000";
+        document.getElementById("vmessage").style.display = "block";
+    }
+    else{
+        document.getElementById(inputaster).style.display = "none";
+        document.getElementById(input).style.borderColor = "#00ba09"; 
+        document.getElementById("vmessage").style.display = "none";           
+    }    
 }
 /*************************************************************
  * Program
@@ -105,7 +123,7 @@ function submitNewMember(){
     member.businesslicense = document.getElementById("businesslicense").value;
     member.personllicense = document.getElementById("personallicense").value;
     member.email = document.getElementById("email").value;
-    write(JSON.stringify(member));
+    localStorage.setItem("member", JSON.stringify(member));
     displayThankYou();
     populateThankYouData(member);    
 }
@@ -158,3 +176,73 @@ function populateThankYouData(member){
     document.getElementById("rpersonalLicense").innerHTML = "4001-" + member.personllicense;
     document.getElementById("remail").innerHTML = member.email;
 }
+/*******************************
+ * confirmNew
+ ******************************/
+function confirmNew(){
+    var member = localStorage.getItem("member");
+    write(member);
+    clearFields();
+    twoChoiceVisible();
+}
+/*******************************
+ * clearFields
+ ******************************/
+function clearFields(){
+    document.getElementById("firstName").value = '';
+    document.getElementById("lastName").value = '';
+    document.getElementById("businessName").value = '';
+    document.getElementById("businessAddress").value = '';
+    document.getElementById("zipcode").value = '';
+    document.getElementById("state").value = '';
+    document.getElementById("businesslicense").value = '';
+    document.getElementById("personallicense").value = '';
+    document.getElementById("email").value = '';
+}
+/*******************************
+ * fillFields
+ ******************************/
+function fillFields(){
+    var member = JSON.parse(localStorage.getItem("member"));
+    document.getElementById("firstName").value = member.firstName;
+    document.getElementById("lastName").value = member.lastName;
+    document.getElementById("businessName").value = member.businessName;
+    document.getElementById("businessAddress").value = member.businessAddress;
+    document.getElementById("zipcode").value = member.zip;
+    document.getElementById("state").value = member.state;
+    document.getElementById("businesslicense").value = member.businesslicense;
+    document.getElementById("personallicense").value = member.personllicense;
+    document.getElementById("email").value = member.email;
+}
+/*************************************************************
+ * Form Validation
+ ************************************************************/
+/**********************
+ * New Member
+ *********************/
+function onInputValidate(){
+    document.getElementById("firstName").oninput = function(){ validationCSS(validateFirstName(), "firstName"); };
+    document.getElementById("lastName").oninput = function(){ validationCSS(validateLastName(), "lastName"); };/*
+    document.getElementById("businessName").value = member.businessName;
+    document.getElementById("businessAddress").value = member.businessAddress;
+    document.getElementById("zipcode").value = member.zip;
+    document.getElementById("state").value = member.state;
+    document.getElementById("businesslicense").value = member.businesslicense;
+    document.getElementById("personallicense").value = member.personllicense;*/
+    document.getElementById("email").oninput = function(){ validationCSS(validateEmail(), "email"); };
+}
+function validateFirstName() {
+    var name = document.getElementById("firstName").value;
+    var regularEx = /^[a-z ,.'-]+$/i;
+    return regularEx.test(name);
+  }
+  function validateLastName() {
+    var name = document.getElementById("lastName").value;
+    var regularEx = /^[a-z ,.'-]+$/i;
+    return regularEx.test(name);
+  }
+function validateEmail() {
+    var email = document.getElementById("email").value;
+    var regularEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regularEx.test(email);
+  }

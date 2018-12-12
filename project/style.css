@@ -106,7 +106,7 @@ body{
     -webkit-transition: all .5s; /* Safari */
     transition: all .5s;
 }
-#inputs{
+.inputs{
     text-align: right;
 }
 #newMemberInput{
@@ -118,11 +118,15 @@ body{
     padding-bottom: 40px;
 }
 .nMInput{
-    width: 65%;
+    /*width: 65%;*/
+    border: 2px solid;
+    border-color: #626262;
     border-radius: 6px;
+    -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;
 }
 .nMInputhalf{
-    width: 25%;
+    /*width: 25%;*/
     border-radius: 6px;
 }
 #existingMemberInput{
@@ -141,4 +145,14 @@ body{
 }
 #thankYou{
     display: none;
+    border-radius: 12px;
+    padding: 20px;    
+}
+#businessLicensefields{
+    display: none;
+}
+.valtext{
+    display: none;
+    color: #ff0000;
+    float: left;
 }

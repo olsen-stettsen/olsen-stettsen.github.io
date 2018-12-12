@@ -32,16 +32,26 @@
                 <div id="newMemberInput">
                     <br><button id="backto2" class="btn">Back</button><button id="existingMemberbtn" class="btn">Existing Member?</button>
                     <h4>New Member Information</h4>
-                    <div id="inputs">
+                    <div class="inputs">
+                    <span class="valtext" id="vfirstName">*</span>
                     <span class="iTag">First Name:</span><input type="text" id="firstName" class="nMInput" placeholder="   First Name"><br>
+                    <span class="valtext" id="vlastName">*</span>
                     <span class="iTag">Last Name</span><input type="text" id="lastName" class="nMInput" placeholder="   Last Name"><br>
+                    <span class="valtext" id="vbusinessName">*</span>
                     <span class="iTag">Business Name:</span><input type="text" id="businessName" class="nMInput" placeholder="   Business Name"><br>
+                    <span class="valtext" id="vbusinessAddress">*</span>
                     <span class="iTag">Business Address:</span><input type="text" id="businessAddress" class="nMInput" placeholder="   1234 Your Street"><br>
-                    <span class="iTag">Zip Code:</span><input type="text" id="zipcode" class="nMInputhalf" placeholder="12345">
+                    <span class="valtext" id="vzipcode">*</span>
+                    <span class="iTag">Zip Code:</span><input type="text" id="zipcode" class="nMInputhalf" placeholder="12345"><br>
+                    <span class="valtext" id="vstate">*</span>
                     <span class="iTag">State:</span><input type="text" id="state" class="nMInputhalf" placeholder="UT"><br>
-                    <span class="iTag">4000-</span><input type="text" id="businesslicense" class="nMInput" placeholder="   Busines License after '-'. Example: 55555"><br>
-                    <span class="iTag">4001-</span><input type="text" id="personallicense" class="nMInput" placeholder="   Personal License after '-'. Example:55555"><br>
-                    <span class="iTag">Email:</span><input type="text" id="email" class="nMInput" placeholder="   Email">
+                    <span class="valtext" id="vbusinesslicense">*</span>
+                    <span class="iTag">Business License: 4000-</span><input type="text" id="businesslicense" class="nMInput" placeholder="   Example: 55555"><br>
+                    <span class="valtext" id="vpersonallicense">*</span>
+                    <span class="iTag">Personal License: 4001-</span><input type="text" id="personallicense" class="nMInput" placeholder="   Example:55555"><br>
+                    <span class="valtext" id="vemail">*</span>
+                    <span class="iTag">Email:</span><input type="text" id="email" class="nMInput" placeholder="   Email"><br>
+                    <span class="valtext" id="vmessage">Please verify that all fields marked with a ' * '</span>
                     <br><button id="submitnewbtn" class="btn">Submit</button>
                 </div><!--End inputs-->
                 </div>                <!--End newMemberInput-->
@@ -49,16 +59,19 @@
                         <br><button id="backto22" class="btn">Back</button><button id="newMemberbtn" class="btn">New Member?</button>
                         <h4>Existing Information</h4>
                         <div id="inputs2">
-                            <input type="text" id="businesslicense2" class="nMInput" placeholder="   Business wLicense Number Example: 4000-55555"><br>
+                            <div id="businessLicensefields">
+                            <input type="text" id="businesslicense2" class="nMInput" placeholder="   Business License Number Example: 4000-55555"><br>
                             <div id="orcenter">
                                 <img id="orlnumber" src="or.png" alt="or"><br>
                             </div>
+                        </div><!--End businessLicensefields-->
                             <input type="text" id="personallicense2" class="nMInput" placeholder="   License Number Example: 4001-55555"><br>
                             <br><button id="submitexistingbtn" class="btn">Submit</button>
                             </div><!--End inputs-->
                     </div>                <!--End existingMemberInput-->
                     <div id="thankYou">
                         <h1 id="thankYouNameh1"></h1>
+                        <h2>Please take a second to review your information before submitting.</h2>
                         <span class="iTag">First Name: </span><span id="rfirstName"></span><br>
                         <span class="iTag">Last Name: </span><span id="rlastName"></span><br>
                         <span class="iTag">Business Name: </span><span id="rbusinessName"></span><br>
@@ -68,6 +81,10 @@
                         <span class="iTag">Business License: </span><span id="rbusinessLicense"></span><br>
                         <span class="iTag">Personal License: </span><span id="rpersonalLicense"></span><br>
                         <span class="iTag">Email: </span><span id="remail"></span><br>
+                        <div class="inputs">
+                        <button id="editbtn" class="btn">Edit</button>
+                        <button id="newconfirm" class="btn">Submit</button>
+                    </div><!--End inputs-->
                     </div><!--End thankYou-->
             </div>            <!--End Content-->
         </div>        <!--End backgroundfilter-->
