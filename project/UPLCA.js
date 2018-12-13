@@ -50,6 +50,11 @@ function startUpButtonAppearFade(){
     }
 }
 function newMemberVisible(){
+    clearFields();
+    if(localStorage.getItem("existingBool") == "true"){
+        fillFields();
+        localStorage.setItem("existingBool", "false");
+    }
     document.getElementById("updateEnterPrompt").style.display = "none";
     document.getElementById("newMemberInput").style.display = "block";
     document.getElementById("existingMemberInput").style.display = "none";
@@ -78,6 +83,15 @@ function existingMemberVisible(){
 function displayThankYou(){
     document.getElementById("newMemberInput").style.display = "none";
     document.getElementById("thankYou").style.display = "block";   
+}
+function existingMemberInfoVisible(){
+    document.getElementById("existingMemberInput").style.display = "none";
+    document.getElementById("thankYou").style.display = "block";
+    localStorage.setItem("existingBool", "true");
+    //var member = JSON.parse(localStorage.getItem("member"));
+    //populateThankYouData(member);                             // was loading the page before the new member was set, moved to dblookup
+    //document.getElementById("thankYouNameh1").innerHTML = "User Information";
+    //document.getElementById("thankYouNameh2").innerHTML = "";
 }
 function validationCSS(method, input){
     var inputaster = "v" + input;
@@ -135,8 +149,9 @@ function submitNewMember() {
  * Update Existing Member
  *********************/
 function updateExistingMember(){
-    var member = dbLookup(document.getElementById("personallicense2").value);
-    alert(member);
+    if(checkExistingBeforeLookup()){
+    dbLookup(document.getElementById("personallicense2").value, document.getElementById("email2").value);
+    }
 }
 /********************************
  *write
@@ -155,14 +170,25 @@ function write(input) {
  *dbLookup
  *looks up the member information on the server side
 ********************************/
-function dbLookup(personallicense){
+function dbLookup(personallicense, email){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            return this.responseText;
+            if(this.responseText == "NONE FOUND"){
+                alert("Our records show no account with this information. Please verify your input.");
+            }
+            else{
+            localStorage.setItem("member", this.responseText);
+            var member = JSON.parse(this.responseText);
+            populateThankYouData(member); // placed here so that page wouldn't load with wrong info
+            document.getElementById("thankYouNameh1").innerHTML = "User Information";
+            document.getElementById("thankYouNameh2").innerHTML = "";
+            document.getElementById("newconfirm").innerHTML = "Done";
+            existingMemberInfoVisible();
+            }
         }
     };
-    xmlhttp.open("GET", "dbLookup.php?q=" + personallicense, true);
+    xmlhttp.open("GET", "dbLookup.php?q=" + personallicense + "&r=" + email, true); // '?' is the start and '&' is next var
     xmlhttp.send();
 }
 /********************************
@@ -170,6 +196,7 @@ function dbLookup(personallicense){
 ********************************/
 function populateThankYouData(member){
     document.getElementById("thankYouNameh1").innerHTML = "Thank you, " + member.firstName +"!";
+    document.getElementById("thankYouNameh2").innerHTML = "Please take a second to review your information before submitting.";
     document.getElementById("rfirstName").innerHTML = member.firstName;
     document.getElementById("rlastName").innerHTML = member.lastName;
     document.getElementById("rbusinessName").innerHTML = member.businessName;
@@ -180,13 +207,14 @@ function populateThankYouData(member){
     document.getElementById("rbusinessLicense").innerHTML = "4000-" + member.businesslicense;
     document.getElementById("rpersonalLicense").innerHTML = "4001-" + member.personllicense;
     document.getElementById("remail").innerHTML = member.email;
+    document.getElementById("newconfirm").innerHTML = "Submit";
 }
 /*******************************
  * confirmNew
  ******************************/
 function confirmNew(){
     var member = localStorage.getItem("member");
-    write(member);
+    write(member);// this is in JSON format
     clearFields();
     twoChoiceVisible();
 }
@@ -237,7 +265,9 @@ function onInputValidate(){
     document.getElementById("state").oninput = function(){ validationCSS(validateState(), "state"); };
     document.getElementById("businesslicense").oninput = function(){ validationCSS(validateBusinesslicense(), "businesslicense"); };
     document.getElementById("personallicense").oninput = function(){ validationCSS(validatePersonallicense(), "personallicense"); };
+    document.getElementById("personallicense2").oninput = function(){ validationCSS(validatePersonallicense2(), "personallicense2"); };
     document.getElementById("email").oninput = function(){ validationCSS(validateEmail(), "email"); };
+    document.getElementById("email2").oninput = function(){ validationCSS(validateEmail2(), "email2"); };
 }
 /**********************
  * Validation Methods
@@ -300,8 +330,18 @@ function validatePersonallicense() {
     var regularEx = /^[0-9]{4,5}?$/;
     return regularEx.test(personallicense);
 }
+function validatePersonallicense2() {
+    var personallicense = document.getElementById("personallicense2").value;
+    var regularEx = /^[0-9]{4,5}?$/;
+    return regularEx.test(personallicense);
+}
 function validateEmail() {
     var email = document.getElementById("email").value;
+    var regularEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regularEx.test(email);
+}
+function validateEmail2() {
+    var email = document.getElementById("email2").value;
     var regularEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regularEx.test(email);
 }
@@ -320,4 +360,9 @@ function checkBeforeSubmit(){
     validationCSS(validatePersonallicense(), "personallicense");
     validationCSS(validateEmail(), "email");
     return validateFirstName() && validateLastName() && validateBusinessName() && validateBusinessAddress() && validateZip() && validateState() && validateBusinesslicense() && validatePersonallicense() && validateEmail();
+}
+function checkExistingBeforeLookup(){
+    validationCSS(validatePersonallicense2(), "personallicense2");
+    validationCSS(validateEmail2(), "email2");
+    return validatePersonallicense2() && validateEmail2();
 }
