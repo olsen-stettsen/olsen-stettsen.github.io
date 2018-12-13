@@ -135,7 +135,8 @@ function submitNewMember() {
  * Update Existing Member
  *********************/
 function updateExistingMember(){
-    dbLookup();
+    var member = dbLookup(document.getElementById("personallicense2").value);
+    alert(member);
 }
 /********************************
  *write
@@ -154,15 +155,14 @@ function write(input) {
  *dbLookup
  *looks up the member information on the server side
 ********************************/
-function dbLookup(){
-    var input = "test";
+function dbLookup(personallicense){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            alert(this.responseText);
+            return this.responseText;
         }
     };
-    xmlhttp.open("GET", "dbLookup.php?q=" + input, true);
+    xmlhttp.open("GET", "dbLookup.php?q=" + personallicense, true);
     xmlhttp.send();
 }
 /********************************
@@ -197,6 +197,7 @@ function clearFields(){
     document.getElementById("firstName").value = '';
     document.getElementById("lastName").value = '';
     document.getElementById("businessName").value = '';
+    document.getElementById("phone").value = '';
     document.getElementById("businessAddress").value = '';
     document.getElementById("zipcode").value = '';
     document.getElementById("state").value = '';
@@ -212,6 +213,7 @@ function fillFields(){
     document.getElementById("firstName").value = member.firstName;
     document.getElementById("lastName").value = member.lastName;
     document.getElementById("businessName").value = member.businessName;
+    document.getElementById("phone").value = member.phone;
     document.getElementById("businessAddress").value = member.businessAddress;
     document.getElementById("zipcode").value = member.zip;
     document.getElementById("state").value = member.state;
@@ -310,6 +312,7 @@ function checkBeforeSubmit(){
     validationCSS(validateFirstName(), "firstName");
     validationCSS(validateLastName(), "lastName");
     validationCSS(validateBusinessName(), "businessName");
+    validationCSS(validatePhone(), "phone");
     validationCSS(validateBusinessAddress(), "businessAddress");
     validationCSS(validateZip(), "zipcode");
     validationCSS(validateState(), "state");
