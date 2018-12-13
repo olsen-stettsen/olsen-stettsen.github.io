@@ -154,5 +154,33 @@ body{
 .valtext{
     display: none;
     color: #ff0000;
+}
+.valimg{
+    background-color: #ff0000;
+    height: 12pt;
+    border-radius: 100%;
     float: left;
+    -webkit-transition: all .5s; /* Safari */
+    transition: all .5s;
+    animation: movearrow 2s infinite;
+}                                
+@keyframes movearrow {
+    0% {
+        margin-left: 0px;
+        padding-left: 0px;
+        background: #ff0000;
+        border-radius: 0%;
+    }
+    50% {
+        margin-left: 20px;
+        padding-left: 10px;
+        background: #ff3300;
+        border-radius: 100%;        
+    }
+    100% {
+        margin-left: 0px;
+        padding-left: 0px;
+        background: #ff0000;
+        border-radius: 0%;      
+    }
 }

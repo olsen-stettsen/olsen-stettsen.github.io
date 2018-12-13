@@ -102,6 +102,7 @@ function Member() {
     this.firstName;
     this.lastName;
     this.businessName;
+    this.phone;
     this.businessAddress;
     this.zip;
     this.state;
@@ -118,6 +119,7 @@ function submitNewMember() {
         member.firstName = document.getElementById("firstName").value;
         member.lastName = document.getElementById("lastName").value;
         member.businessName = document.getElementById("businessName").value;
+        member.phone = document.getElementById("phone").value;
         member.businessAddress = document.getElementById("businessAddress").value;
         member.zip = document.getElementById("zipcode").value;
         member.state = document.getElementById("state").value;
@@ -171,6 +173,7 @@ function populateThankYouData(member){
     document.getElementById("rfirstName").innerHTML = member.firstName;
     document.getElementById("rlastName").innerHTML = member.lastName;
     document.getElementById("rbusinessName").innerHTML = member.businessName;
+    document.getElementById("rphone").innerHTML = member.phone;
     document.getElementById("rbusinessAddress").innerHTML = member.businessAddress;
     document.getElementById("rzipCode").innerHTML = member.zip;
     document.getElementById("rstate").innerHTML = member.state;
@@ -226,6 +229,7 @@ function onInputValidate(){
     document.getElementById("firstName").oninput = function(){ validationCSS(validateFirstName(), "firstName"); };
     document.getElementById("lastName").oninput = function(){ validationCSS(validateLastName(), "lastName"); };
     document.getElementById("businessName").oninput = function(){ validationCSS(validateBusinessName(), "businessName"); };
+    document.getElementById("phone").oninput = function(){ validationCSS(validatePhone(), "phone"); };
     document.getElementById("businessAddress").oninput = function(){ validationCSS(validateBusinessAddress(), "businessAddress"); };
     document.getElementById("zipcode").oninput = function(){ validationCSS(validateZip(), "zipcode"); };
     document.getElementById("state").oninput = function(){ validationCSS(validateState(), "state"); };
@@ -250,6 +254,11 @@ function validateBusinessName() {
     var name = document.getElementById("businessName").value;
     var regularEx = /^[a-z0-9 ,.'-]+$/i;
     return regularEx.test(name);
+}
+function validatePhone() {
+    var phone = document.getElementById("phone").value;
+    var regularEx = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
+    return regularEx.test(phone);
 }
 function validateBusinessAddress() {
     var address = document.getElementById("businessAddress").value;
@@ -298,5 +307,14 @@ function validateEmail() {
  * check Before Submit
  *********************/
 function checkBeforeSubmit(){
+    validationCSS(validateFirstName(), "firstName");
+    validationCSS(validateLastName(), "lastName");
+    validationCSS(validateBusinessName(), "businessName");
+    validationCSS(validateBusinessAddress(), "businessAddress");
+    validationCSS(validateZip(), "zipcode");
+    validationCSS(validateState(), "state");
+    validationCSS(validateBusinesslicense(), "businesslicense");
+    validationCSS(validatePersonallicense(), "personallicense");
+    validationCSS(validateEmail(), "email");
     return validateFirstName() && validateLastName() && validateBusinessName() && validateBusinessAddress() && validateZip() && validateState() && validateBusinesslicense() && validatePersonallicense() && validateEmail();
 }
